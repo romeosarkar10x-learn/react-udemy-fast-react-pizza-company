@@ -4,6 +4,10 @@ import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+function getTime() {
+  return new Date().toLocaleTimeString();
+}
+
 function Pizza(props) {
   console.log(props);
   return (
@@ -24,17 +28,7 @@ function Header() {
   );
 }
 
-function Footer() {
-  const hour = new Date().getHours();
-  const openHour = 12,
-    closeHour = 22;
-
-  const isOpen = openHour <= hour && hour <= closeHour;
-
-  function getTime() {
-    return new Date().toLocaleTimeString();
-  }
-
+function Order(props) {
   const [time, setTime] = React.useState(getTime());
 
   React.useEffect(function () {
@@ -44,15 +38,27 @@ function Footer() {
   }, []);
 
   return (
+    <>
+      <p>
+        [<time>{time}</time>] We're open from {props.openHour}:00 until{" "}
+        {props.closeHour}:00! Come visit us, or order online.
+      </p>
+      <button className="btn">Order</button>
+    </>
+  );
+}
+
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 12,
+    closeHour = 24;
+
+  const isOpen = openHour <= hour && hour <= closeHour;
+
+  return (
     <footer className="footer">
       {isOpen ? (
-        <>
-          <p>
-            [<time>{time}</time>] We're open until {closeHour}:00! Come visit
-            us, or order online.
-          </p>
-          <button className="btn">Order</button>
-        </>
+        <Order openHour={openHour} closeHour={closeHour} />
       ) : (
         <p>
           We're happy to serve you between {openHour}:00 and {closeHour}:00.
