@@ -83,7 +83,7 @@ body {
 
 .menu h2 {
   display: inline-block;
-  padding: 1rem 0;
+  padding: 0.25rem 0;
   border-top: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
   font-size: 2.4rem;
@@ -171,6 +171,7 @@ body {
   font-size: 1.4rem;
   font-weight: 500;
   background-color: #edc84b;
+  margin-top: 1rem;
   padding: 1.4rem 3.2rem;
   cursor: pointer;
   transition: all 0.2s;

@@ -45,7 +45,7 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <>
           <p>
             [<time>{time}</time>] We're open until {closeHour}:00! Come visit
@@ -53,6 +53,11 @@ function Footer() {
           </p>
           <button className="btn">Order</button>
         </>
+      ) : (
+        <p>
+          We're happy to serve you between {openHour}:00 and {closeHour}:00.
+          Thank you for visiting us!
+        </p>
       )}
     </footer>
   );
@@ -66,7 +71,6 @@ function Menu() {
       method: "GET",
     }).then(function (res) {
       res.json().then((data) => {
-        console.log(data);
         setPizzas(data.data);
       });
     });
@@ -75,19 +79,25 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <ul className="pizzas">
-        {pizzas.map(function (pizza) {
-          return (
-            <Pizza
-              name={pizza.name}
-              ingredients={pizza.ingredients}
-              price={pizza.price}
-              photoName={pizza.photoName}
-              soldOut={pizza.soldOut}
-            />
-          );
-        })}
-      </ul>
+      {pizzas.length > 0 ? (
+        <ul className="pizzas">
+          {pizzas.map(function (pizza) {
+            return (
+              <Pizza
+                name={pizza.name}
+                ingredients={pizza.ingredients}
+                price={pizza.price}
+                photoName={pizza.photoName}
+                soldOut={pizza.soldOut}
+              />
+            );
+          })}
+        </ul>
+      ) : (
+        <p>
+          We're still working on our menu. Please come back after some time.
+        </p>
+      )}
     </main>
   );
 }
