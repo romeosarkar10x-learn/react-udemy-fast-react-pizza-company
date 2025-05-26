@@ -48,8 +48,8 @@ function Footer() {
       {isOpen && (
         <>
           <p>
-            [<time>{time}</time>] We're open until {closeHour}! Come visit us,
-            or order online.
+            [<time>{time}</time>] We're open until {closeHour}:00! Come visit
+            us, or order online.
           </p>
           <button className="btn">Order</button>
         </>
