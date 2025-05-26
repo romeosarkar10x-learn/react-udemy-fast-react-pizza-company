@@ -7,7 +7,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 function Pizza(props) {
   console.log(props);
   return (
-    <div className="pizza">
+    <div className={`pizza ${props.soldOut ? "sold-out" : ""}`}>
       <img src={props.photoName} alt={props.name} />
       <h3>{props.name}</h3>
       <p>{props.ingredients}</p>
