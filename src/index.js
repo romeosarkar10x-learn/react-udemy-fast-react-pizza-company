@@ -80,19 +80,25 @@ function Menu() {
     <main className="menu">
       <h2>Our menu</h2>
       {pizzas.length > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map(function (pizza) {
-            return (
-              <Pizza
-                name={pizza.name}
-                ingredients={pizza.ingredients}
-                price={pizza.price}
-                photoName={pizza.photoName}
-                soldOut={pizza.soldOut}
-              />
-            );
-          })}
-        </ul>
+        <>
+          <p>
+            Authentic Italian cuisine. {pizzas.length} creative dishes to choose
+            from. All from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+            {pizzas.map(function (pizza) {
+              return (
+                <Pizza
+                  name={pizza.name}
+                  ingredients={pizza.ingredients}
+                  price={pizza.price}
+                  photoName={pizza.photoName}
+                  soldOut={pizza.soldOut}
+                />
+              );
+            })}
+          </ul>
+        </>
       ) : (
         <p>
           We're still working on our menu. Please come back after some time.
