@@ -2,7 +2,8 @@ name: Deploy to `Github Pages`
 on: [push]
 
 jobs:
-  "Deploy to `Github Pages`":
+  deploy-to-github-pages:
+    name: "Deploy to `Github Pages`"
     runs-on: self-hosted
     steps:
       - name: Checkout repository
