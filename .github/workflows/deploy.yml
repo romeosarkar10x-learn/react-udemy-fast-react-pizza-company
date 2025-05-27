@@ -24,9 +24,8 @@ jobs:
         run: ls -la ./build
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: react-build
           path: ./build
 
   deploy-to-github-pages:
@@ -47,5 +46,3 @@ jobs:
       - name: Deploy artifact to `Github Pages`
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: react-build
