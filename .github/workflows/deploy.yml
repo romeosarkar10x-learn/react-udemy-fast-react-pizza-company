@@ -2,8 +2,8 @@ name: Deploy to `Github Pages`
 on: [push]
 
 jobs:
-  deploy-to-github-pages:
-    name: "Deploy to `Github Pages`"
+  build:
+    name: "Build and upload project"
     runs-on: self-hosted
     steps:
       - name: Checkout repository
@@ -23,8 +23,25 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
+          name: react-build
           path: ./build
 
-      - name: Deploy to `Github Pages`
+  deploy-to-github-pages:
+    runs-on: self-hosted
+
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy artifact to `Github Pages`
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: react-build
