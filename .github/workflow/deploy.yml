@@ -1,0 +1,24 @@
+name: Deploy to `Github Pages`
+on: [push]
+
+jobs:
+  Deploy to `Github Pages`:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup `node`
+        uses: actions/setup-node@v4
+
+      - name: Install dependencies
+        uses: npm clean-install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to `Github Pages`
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          folder: ./build
