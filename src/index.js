@@ -73,7 +73,7 @@ function Menu() {
   const [pizzas, setPizzas] = React.useState([]);
 
   React.useEffect(function () {
-    fetch("/data.json", {
+    fetch("./data.json", {
       method: "GET",
     }).then(function (res) {
       res.json().then((data) => {
